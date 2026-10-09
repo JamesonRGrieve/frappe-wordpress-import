@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+[project]
+name = "wordpress_import"
+authors = [
+    { name = "Zephyrex Technologies Limited", email = "jameson@zephyrex.ca" }
+]
+description = "Import a WordPress site into Frappe, idempotently and continuously: pages, posts, media and Gravity Forms entries"
+requires-python = ">=3.14,<3.15"
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+dynamic = ["version"]
+dependencies = [
+    # "frappe~=16.0.0" # Installed and managed by bench (brings requests).
+]
+
+[project.urls]
+Repository = "https://github.com/JamesonRGrieve/frappe-wordpress-import"
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
+
+[tool.ruff]
+line-length = 110
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "UP", "B"]
+ignore = ["E101", "W191", "E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

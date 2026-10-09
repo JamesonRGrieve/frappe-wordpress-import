@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "autoname": "field:source_name",
+ "creation": "2026-10-09 18:00:00.000000",
+ "description": "A WordPress site imported into this Frappe site: its pages become Web Pages, posts Blog Posts, media Files and Gravity Forms entries CRM Leads. Re-running an import updates what changed and skips what didn't.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "source_name",
+  "enabled",
+  "site_url",
+  "username",
+  "application_password",
+  "column_break_connection",
+  "route_prefix",
+  "front_page_id",
+  "blog_category",
+  "blogger",
+  "lead_source",
+  "import_section",
+  "import_media",
+  "import_pages",
+  "column_break_import",
+  "import_posts",
+  "import_form_entries",
+  "forms_section",
+  "form_field_maps",
+  "status_section",
+  "last_synced_at",
+  "last_result"
+ ],
+ "fields": [
+  {
+   "fieldname": "source_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Source Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "description": "Imported by the hourly schedule. A disabled source can still be imported by hand.",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "description": "The WordPress site's address, e.g. https://example.com.",
+   "fieldname": "site_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Site URL",
+   "reqd": 1
+  },
+  {
+   "description": "The WordPress user the Application Password belongs to. Needs to read drafts, media and Gravity Forms entries (an administrator, or a role with those capabilities).",
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "WordPress Username",
+   "reqd": 1
+  },
+  {
+   "description": "A WordPress Application Password (Users → Profile). Used for both the WordPress and Gravity Forms REST APIs.",
+   "fieldname": "application_password",
+   "fieldtype": "Password",
+   "label": "Application Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_connection",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Route segment imported pages live under (e.g. a Public Site's route prefix): page \"about\" becomes the Web Page routed <prefix>/about; the front page becomes <prefix>/home.",
+   "fieldname": "route_prefix",
+   "fieldtype": "Data",
+   "label": "Route Prefix"
+  },
+  {
+   "description": "WordPress page id of the front page. Empty: read from the site's reading settings.",
+   "fieldname": "front_page_id",
+   "fieldtype": "Int",
+   "label": "Front Page ID"
+  },
+  {
+   "description": "Blog Category (blog app) imported posts are filed under.",
+   "fieldname": "blog_category",
+   "fieldtype": "Data",
+   "label": "Blog Category"
+  },
+  {
+   "description": "Blogger (blog app) imported posts are attributed to.",
+   "fieldname": "blogger",
+   "fieldtype": "Data",
+   "label": "Blogger"
+  },
+  {
+   "description": "CRM Lead Source given to leads imported from form entries (optional).",
+   "fieldname": "lead_source",
+   "fieldtype": "Data",
+   "label": "Lead Source"
+  },
+  {
+   "fieldname": "import_section",
+   "fieldtype": "Section Break",
+   "label": "What to Import"
+  },
+  {
+   "default": "1",
+   "description": "Media library items become public Files; pages and posts link to them instead of WordPress.",
+   "fieldname": "import_media",
+   "fieldtype": "Check",
+   "label": "Media"
+  },
+  {
+   "default": "1",
+   "fieldname": "import_pages",
+   "fieldtype": "Check",
+   "label": "Pages"
+  },
+  {
+   "fieldname": "column_break_import",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "import_posts",
+   "fieldtype": "Check",
+   "label": "Posts"
+  },
+  {
+   "default": "1",
+   "description": "Active Gravity Forms entries become CRM Leads (Frappe CRM). Spam and trashed entries are skipped.",
+   "fieldname": "import_form_entries",
+   "fieldtype": "Check",
+   "label": "Form Entries"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "forms_section",
+   "fieldtype": "Section Break",
+   "label": "Form Field Overrides"
+  },
+  {
+   "description": "Each form's fields map to lead fields automatically (name, email, phone, website, company). A row here overrides one input; anything unmapped is kept in the lead's form message.",
+   "fieldname": "form_field_maps",
+   "fieldtype": "Table",
+   "label": "Form Field Maps",
+   "options": "WordPress Form Field Map"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Last Import"
+  },
+  {
+   "fieldname": "last_synced_at",
+   "fieldtype": "Datetime",
+   "label": "Last Imported At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_result",
+   "fieldtype": "Small Text",
+   "label": "Last Result",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-09 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "WordPress Import",
+ "name": "WordPress Source",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
